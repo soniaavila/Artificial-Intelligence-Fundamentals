@@ -5,8 +5,8 @@ Este módulo implementa o algoritmo Breadth-First Search (BFS),
 utilizado para percorrer o grafo da cidade a partir de um ponto
 de origem.
 
-O algoritmo visita primeiro os pontos mais próximos da origem
-antes de avançar para pontos mais distantes.
+O BFS visita os pontos por níveis, explorando primeiro os pontos
+mais próximos da origem antes de avançar para pontos mais distantes.
 """
 
 from collections import deque
@@ -18,38 +18,51 @@ def busca_em_largura(grafo, origem):
     """
     Realiza uma busca em largura (BFS) no grafo.
 
-    A busca em largura percorre os vértices do grafo por níveis,
-    visitando primeiro os pontos diretamente conectados à origem
-    e, depois, os pontos dos níveis seguintes.
+    O algoritmo percorre os vértices por níveis. Primeiro são
+    visitados os pontos diretamente conectados à origem e,
+    posteriormente, os pontos dos níveis seguintes.
 
     Parâmetros:
-        grafo: grafo da cidade que será percorrido.
+        grafo: grafo que será percorrido.
         origem: ponto inicial da busca.
 
     Retorno:
-        Uma lista contendo os pontos visitados pela ordem
+        list: lista contendo os pontos visitados na ordem
         em que foram encontrados.
+
+    Exceções:
+        ValueError: quando o ponto de origem não existe no grafo.
     """
 
-    # Fila utilizada para controlar a ordem de visitação.
+    # Verifica se o ponto de origem existe no grafo.
+    if origem not in grafo:
+        raise ValueError(
+            f"O ponto de origem '{origem}' não existe no grafo."
+        )
+
+    # A fila controla a ordem de processamento dos pontos.
+    # O BFS utiliza a lógica FIFO:
+    # First In, First Out (primeiro a entrar, primeiro a sair).
     fila = deque([origem])
 
-    # Conjunto utilizado para registrar os pontos que já foram visitados.
+    # Registra os pontos que já foram encontrados.
+    # Isso evita que um mesmo ponto seja colocado várias vezes
+    # na fila.
     visitados = {origem}
 
-    # Lista que armazenará a ordem de visitação dos pontos.
+    # Armazena a ordem em que os pontos são visitados.
     ordem_visita = []
 
-    # Enquanto existirem pontos aguardando na fila.
+    # Continua enquanto existirem pontos aguardando na fila.
     while fila:
 
-        # Remove o primeiro ponto da fila.
+        # Remove o primeiro elemento da fila.
         atual = fila.popleft()
 
         # Registra o ponto na ordem de visitação.
         ordem_visita.append(atual)
 
-        # Percorre os vizinhos do ponto atual.
+        # Obtém os pontos diretamente conectados ao ponto atual.
         for vizinho in grafo.neighbors(atual):
 
             # Verifica se o vizinho ainda não foi visitado.
@@ -58,7 +71,7 @@ def busca_em_largura(grafo, origem):
                 # Marca o vizinho como visitado.
                 visitados.add(vizinho)
 
-                # Adiciona o vizinho ao final da fila.
+                # Coloca o vizinho no final da fila.
                 fila.append(vizinho)
 
     return ordem_visita
@@ -67,7 +80,7 @@ def busca_em_largura(grafo, origem):
 if __name__ == "__main__":
     """
     Executa um exemplo do algoritmo BFS utilizando
-    o grafo da cidade criado no módulo city_graph.
+    o grafo da cidade definido no módulo city_graph.
     """
 
     # Cria o grafo que representa a cidade.
@@ -76,7 +89,7 @@ if __name__ == "__main__":
     # Define o ponto inicial da busca.
     origem = "Centro"
 
-    # Executa o algoritmo BFS.
+    # Executa o algoritmo de Busca em Largura.
     resultado = busca_em_largura(cidade, origem)
 
     # Exibe os resultados no terminal.
