@@ -1,8 +1,14 @@
-# Resultados dos Algoritmos
+# 📊 Resultados e Análises
 
-Neste arquivo estão os resultados dos testes realizados com os algoritmos de busca no grafo da cidade fictícia Sabor Express.
+Este documento apresenta os resultados obtidos durante a execução dos
+algoritmos de Inteligência Artificial implementados no projeto
+**Otimização Inteligente de Rotas para a Sabor Express**.
 
-Os pontos utilizados foram:
+---
+
+## 1. Cenário Utilizado
+
+A cidade foi representada por cinco localidades:
 
 - Centro
 - Norte
@@ -10,58 +16,29 @@ Os pontos utilizados foram:
 - Leste
 - Oeste
 
----
+As conexões entre as localidades representam ruas e possuem pesos
+correspondentes às distâncias estimadas.
 
-## 1. Busca em Largura (BFS)
-
-### Teste
-
-**Origem:** Centro
-
-### Resultado
-
-A ordem de visitação encontrada foi:
-
-```text
-Centro → Norte → Sul → Leste → Oeste
-```
+| Origem | Destino | Peso |
+|---|---|---:|
+| Centro | Norte | 4 |
+| Centro | Sul | 6 |
+| Centro | Leste | 3 |
+| Centro | Oeste | 5 |
+| Norte | Leste | 2 |
+| Sul | Oeste | 2 |
+| Leste | Oeste | 4 |
 
 ---
 
-## 2. Busca em Profundidade (DFS)
+## 2. Resultado da Busca em Largura — BFS
 
-### Teste
+O algoritmo **Breadth-First Search (BFS)** realiza a busca explorando
+os nós por níveis.
 
-**Origem:** Centro
+### Execução
 
-### Resultado
-
-A ordem de visitação encontrada foi:
-
-```text
-Centro → Norte → Leste → Oeste → Sul
-```
-
----
-
-## 3. Busca A* (A-Star)
-
-### Teste
-
-**Origem:** Centro
-
-**Destino:** Oeste
-
-### Resultado
-
-O caminho encontrado foi:
+**Ponto de origem:**
 
 ```text
-Centro → Oeste
-```
-
-**Custo total:** 5
-
-### Imagem da rota
-
-![Rota A* - Centro → Oeste](../images/rota_astar_centro_oeste.png)
+Centro
