@@ -8,25 +8,20 @@ def criar_grafo():
 
     Cada ponto representa uma localidade da cidade
     e cada ligação representa uma rua.
-
-    O peso de cada ligação representa a distância
-    estimada entre os pontos.
     """
 
-    # Criação do grafo.
-    # Graph permite representar as ruas nos dois sentidos.
     cidade = nx.Graph()
 
-    # Pontos da cidade
+    # Pontos da cidade e suas coordenadas.
     cidade.add_nodes_from([
-        "Centro",
-        "Norte",
-        "Sul",
-        "Leste",
-        "Oeste"
+        ("Centro", {"pos": (0, 0)}),
+        ("Norte", {"pos": (0, 3)}),
+        ("Sul", {"pos": (0, -3)}),
+        ("Leste", {"pos": (3, 0)}),
+        ("Oeste", {"pos": (-3, 0)})
     ])
 
-    # Ruas e respectivas distâncias
+    # Ruas e distâncias.
     cidade.add_weighted_edges_from([
         ("Centro", "Norte", 4),
         ("Centro", "Sul", 6),
@@ -44,7 +39,6 @@ if __name__ == "__main__":
     cidade = criar_grafo()
 
     print("Grafo da cidade criado com sucesso!")
-
     print("Pontos:")
     print(list(cidade.nodes))
 

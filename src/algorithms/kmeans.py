@@ -8,7 +8,42 @@ A ideia é auxiliar a Sabor Express a organizar os pedidos
 em grupos de regiões, facilitando o planejamento das entregas.
 """
 
+import csv
+from pathlib import Path
+
 from sklearn.cluster import KMeans
+
+
+def carregar_pontos():
+    """
+    Carrega os pontos de entrega a partir do arquivo CSV.
+
+    Retorna:
+        Uma tupla contendo:
+        - locais: nomes das localidades;
+        - coordenadas: posições numéricas dos pontos.
+    """
+
+    caminho_arquivo = (
+        Path(__file__).resolve().parents[2]
+        / "data"
+        / "pontos_entrega.csv"
+    )
+
+    locais = []
+    coordenadas = []
+
+    with open(caminho_arquivo, "r", encoding="utf-8") as arquivo:
+        leitor = csv.DictReader(arquivo)
+
+        for linha in leitor:
+            locais.append(linha["local"])
+            coordenadas.append([
+                float(linha["x"]),
+                float(linha["y"])
+            ])
+
+    return locais, coordenadas
 
 
 def agrupar_entregas():
@@ -20,19 +55,8 @@ def agrupar_entregas():
         ao qual ela pertence.
     """
 
-    # Coordenadas fictícias das localidades da cidade.
-    # Os valores representam a posição aproximada de cada ponto.
-    pontos = {
-    "Centro": [0, 0],
-    "Norte": [0, 3],
-    "Sul": [0, -3],
-    "Leste": [3, 0],
-    "Oeste": [-3, 0]
-}
-
-    # Converte as coordenadas para uma lista.
-    locais = list(pontos.keys())
-    coordenadas = list(pontos.values())
+    # Carrega os dados do arquivo CSV.
+    locais, coordenadas = carregar_pontos()
 
     # Define a quantidade de zonas de entrega.
     kmeans = KMeans(
@@ -54,9 +78,6 @@ def agrupar_entregas():
 
 
 if __name__ == "__main__":
-    """
-    Executa um exemplo do agrupamento de entregas.
-    """
 
     resultado = agrupar_entregas()
 
