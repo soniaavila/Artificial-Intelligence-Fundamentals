@@ -1,0 +1,6 @@
+local,x,y
+Centro,0,0
+Norte,0,3
+Sul,0,-3
+Leste,3,0
+Oeste,-3,0
