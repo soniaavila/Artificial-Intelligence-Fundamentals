@@ -700,3 +700,9 @@ Gestão da Tecnologia da Informação – UniFECAF
 Projeto acadêmico desenvolvido para a disciplina **Fundamentos da Inteligência Artificial**.
 
 ---
+
+Gestão da Tecnologia da Informação – UniFECAF
+
+Projeto acadêmico desenvolvido para a disciplina **Fundamentos da Inteligência Artificial**.
+
+---
