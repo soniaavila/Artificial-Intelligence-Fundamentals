@@ -2,38 +2,36 @@
 
 ![Status](https://img.shields.io/badge/status-finalizado-green)
 ![Python](https://img.shields.io/badge/python-3.13-blue)
-![GitHub](https://img.shields.io/badge/github-repositório-black)
 
-Projeto acadêmico desenvolvido para a disciplina **Fundamentos da Inteligência Artificial**.
+Projeto acadêmico desenvolvido para a disciplina **Fundamentos da Inteligência Artificial**, do curso de **Gestão da Tecnologia da Informação – UniFECAF**.
 
-**Curso:** Gestão da Tecnologia da Informação – UniFECAF  
 **Autora:** Sonia Ávila de Oliveira
 
 ---
 
-# 📌 1. Sobre o projeto
+## 📌 1. Sobre o projeto
 
 A **Sabor Express** é uma empresa fictícia de delivery de alimentos.
 
-O problema escolhido para este projeto foi a organização das rotas de entrega. Em uma situação real, escolher os caminhos manualmente pode gerar percursos maiores, atrasos e dificuldade para organizar vários pedidos ao mesmo tempo.
+O problema escolhido para este projeto foi a organização das rotas de entrega. Em uma situação real, definir os percursos manualmente pode gerar caminhos maiores, atrasos e dificuldade para organizar vários pedidos ao mesmo tempo.
 
-A ideia deste projeto foi criar uma pequena representação de uma cidade e utilizar algoritmos de Inteligência Artificial para analisar os caminhos disponíveis e organizar as localidades em zonas de entrega.
+A minha proposta foi criar uma representação simples de uma cidade e utilizar algoritmos de Inteligência Artificial para analisar os caminhos disponíveis e também organizar as localidades em zonas de entrega.
 
 Para isso, a cidade foi representada como um **grafo ponderado**. Os pontos representam localidades e as conexões representam ruas. Cada conexão possui um valor que representa uma distância estimada.
 
-Também utilizei o **K-Means** para fazer um agrupamento das localidades em duas zonas.
+Além dos algoritmos de busca, utilizei o **K-Means** para agrupar as localidades em duas zonas de entrega.
 
 O projeto foi desenvolvido como uma simulação acadêmica, utilizando dados fictícios.
 
 ---
 
-# 🎯 2. Objetivos
+## 🎯 2. Objetivos
 
-## Objetivo geral
+### Objetivo geral
 
-Desenvolver uma solução utilizando algoritmos clássicos de Inteligência Artificial para analisar rotas e organizar localidades de entrega da empresa fictícia Sabor Express.
+Desenvolver uma solução computacional utilizando algoritmos clássicos de Inteligência Artificial para auxiliar na análise e organização das rotas de entrega da empresa fictícia Sabor Express.
 
-## Objetivos específicos
+### Objetivos específicos
 
 - Representar uma pequena cidade por meio de um grafo;
 - Criar conexões entre as localidades;
@@ -50,7 +48,7 @@ Desenvolver uma solução utilizando algoritmos clássicos de Inteligência Arti
 
 ---
 
-# 🧠 3. Como pensei na solução
+## 🧠 3. Como pensei na solução
 
 Dividi o projeto em duas partes principais.
 
@@ -62,11 +60,11 @@ A segunda parte foi relacionada ao **agrupamento das localidades**.
 
 Utilizei o K-Means para dividir os pontos em duas zonas. Dessa forma, além de analisar os caminhos, também foi possível representar uma possível organização das entregas por região.
 
-Durante o desenvolvimento, procurei manter o problema simples para conseguir entender e testar cada algoritmo individualmente antes de juntar os resultados no programa principal.
+Durante o desenvolvimento, procurei manter o problema pequeno para conseguir entender e testar cada algoritmo individualmente antes de juntar os resultados no programa principal.
 
 ---
 
-# 🗺️ 4. Modelagem do grafo
+## 🗺️ 4. Modelagem do grafo
 
 A cidade utilizada na simulação possui cinco localidades:
 
@@ -78,7 +76,7 @@ A cidade utilizada na simulação possui cinco localidades:
 
 As conexões representam ruas e os valores representam distâncias fictícias.
 
-## Grafo da cidade
+### Grafo da cidade
 
 ![Grafo da Cidade](images/grafo_cidade.png)
 
@@ -94,67 +92,97 @@ As conexões representam ruas e os valores representam distâncias fictícias.
 | Sul | Oeste | 2 |
 | Leste | Oeste | 4 |
 
-O grafo utilizado é não direcionado, ou seja, as conexões podem ser percorridas nos dois sentidos.
+O grafo utilizado é **não direcionado**, ou seja, as conexões podem ser percorridas nos dois sentidos.
 
 Os valores são fictícios e foram utilizados apenas para representar o cenário proposto.
 
 ---
 
-# 📍 5. Dados das localidades
+## 📍 5. Dados das localidades
 
 As coordenadas utilizadas pelo K-Means estão armazenadas no arquivo:
 
-```text
-data/pontos_entrega.csv
+`data/pontos_entrega.csv`
+
 O arquivo possui a seguinte estrutura:
+
+```csv
 local,x,y
 Centro,0,0
 Norte,0,3
 Sul,0,-3
 Leste,3,0
 Oeste,-3,0
+```
+
 Essas coordenadas não representam uma localização real.
 
 Elas foram utilizadas para criar uma posição relativa entre os pontos e permitir que o K-Means realizasse o agrupamento.
-🤖 6. Algoritmos utilizados
-Algoritmo	Tipo	Utilização no projeto
-BFS	Busca em largura	Analisar a ordem de visitação
-DFS	Busca em profundidade	Analisar a exploração do grafo
-A*	Busca heurística	Encontrar caminho de menor custo
-K-Means	Aprendizado não supervisionado	Agrupar localidades em zonas
-🔎 6.1 BFS — Busca em Largura
 
-O BFS (Breadth-First Search) percorre o grafo por níveis.
+---
 
-No projeto, utilizei o Centro como ponto inicial para observar a ordem em que as localidades são visitadas.
+## 🤖 6. Algoritmos utilizados
 
-Execução
+| Algoritmo | Tipo | Utilização no projeto |
+|---|---|---|
+| BFS | Busca em largura | Analisar a ordem de visitação |
+| DFS | Busca em profundidade | Analisar a exploração do grafo |
+| A* | Busca heurística | Encontrar caminho de menor custo |
+| K-Means | Aprendizado não supervisionado | Agrupar localidades em zonas |
+
+---
+
+## 🔎 6.1 BFS — Busca em Largura
+
+O **BFS (Breadth-First Search)** percorre o grafo por níveis.
+
+No projeto, utilizei o **Centro** como ponto inicial para observar a ordem em que as localidades são visitadas.
+
+### Execução
+
+```bash
 python -m src.algorithms.bfs
-Resultado obtido
+```
+
+### Resultado obtido
+
+```text
 Busca em Largura (BFS)
-----------------------
+
 Ponto de origem: Centro
 
 Ordem de visitação:
 ['Centro', 'Norte', 'Sul', 'Leste', 'Oeste']
+```
+
 Durante o teste, foi possível perceber que o BFS visita primeiro os pontos que estão em níveis mais próximos da origem.
 
 Uma observação importante é que o BFS trabalha com a quantidade de conexões percorridas. Como o meu grafo possui pesos representando distâncias, ele não deve ser utilizado como o algoritmo principal para determinar a menor distância.
-🌳 6.2 DFS — Busca em Profundidade
 
-O DFS (Depth-First Search) segue um caminho em profundidade antes de voltar para explorar outras possibilidades.
+---
 
-No projeto, também utilizei o Centro como ponto inicial.
+## 🌳 6.2 DFS — Busca em Profundidade
 
-Execução
+O **DFS (Depth-First Search)** segue um caminho em profundidade antes de voltar para explorar outras possibilidades.
+
+No projeto, também utilizei o **Centro** como ponto inicial.
+
+### Execução
+
+```bash
 python -m src.algorithms.dfs
-Resultado obtido
+```
+
+### Resultado obtido
+
+```text
 Busca em Profundidade (DFS)
---------------------------
+
 Ponto de origem: Centro
 
 Ordem de visitação:
 ['Centro', 'Norte', 'Leste', 'Oeste', 'Sul']
+```
 
 O resultado foi diferente do BFS.
 
@@ -162,21 +190,30 @@ Isso ajudou a visualizar na prática que duas estratégias de busca podem percor
 
 O DFS é útil para explorar a estrutura do grafo, mas não garante o caminho de menor custo em um grafo ponderado.
 
-⭐ 6.3 A* — Busca pelo menor caminho
+---
 
-O A* foi utilizado para procurar um caminho de menor custo entre dois pontos.
+## ⭐ 6.3 A* — Busca pelo menor caminho
+
+O **A*** foi utilizado para procurar um caminho de menor custo entre dois pontos.
 
 Nesse algoritmo, os pesos das conexões são considerados durante a busca.
 
 Para o teste principal, utilizei:
 
-Origem: Centro
-Destino: Oeste
-Execução
+- **Origem:** Centro
+- **Destino:** Oeste
+
+### Execução
+
+```bash
 python -m src.algorithms.astar
-Resultado obtido
+```
+
+### Resultado obtido
+
+```text
 Busca A* (A-Star)
------------------
+
 Ponto de origem: Centro
 Destino: Oeste
 
@@ -185,23 +222,31 @@ Caminho encontrado:
 
 Custo total:
 5
+```
 
 Nesse caso, existe uma conexão direta entre Centro e Oeste com custo 5.
 
-Também foi criada uma visualização da rota encontrada:
+Também foi criada uma visualização da rota encontrada pelo algoritmo.
 
-A imagem ajuda a visualizar o caminho escolhido pelo algoritmo.
-🎯 6.4 K-Means — Agrupamento das entregas
+---
 
-O K-Means é um algoritmo de aprendizado não supervisionado utilizado para agrupar dados semelhantes.
+## 🎯 6.4 K-Means — Agrupamento das entregas
 
-Neste projeto, utilizei as coordenadas das localidades para criar duas zonas de entrega.
+O **K-Means** é um algoritmo de aprendizado não supervisionado utilizado para dividir dados em grupos, chamados de clusters.
 
-Execução
+Neste projeto, utilizei o algoritmo para agrupar as localidades da cidade em **duas zonas de entrega**.
+
+### Execução
+
+```bash
 python -m src.algorithms.kmeans
-Resultado obtido
+```
+
+### Resultado obtido
+
+```text
 K-Means - Agrupamento de Entregas
----------------------------------
+
 Quantidade de zonas: 2
 
 Zona 1:
@@ -209,14 +254,48 @@ Zona 1:
 
 Zona 2:
 ['Sul', 'Oeste']
+```
 
 A divisão permite representar uma possível organização das entregas por região.
 
 A numeração das zonas não é o mais importante. O objetivo é observar quais localidades foram agrupadas.
-🔄 7. Fluxo da solução
 
-O funcionamento geral do projeto pode ser representado da seguinte forma:
+### Aplicação no cenário
 
+Uma possível organização seria:
+
+**Zona 1**
+- Centro
+- Norte
+- Leste
+
+**Zona 2**
+- Sul
+- Oeste
+
+Dessa forma, pedidos de localidades próximas poderiam ser agrupados para facilitar o planejamento das entregas.
+
+---
+
+## 📊 6.5 Comparação das buscas
+
+Os algoritmos BFS, DFS e A* possuem objetivos diferentes.
+
+| Algoritmo | Estratégia | Utilização |
+|---|---|---|
+| BFS | Explora por níveis | Analisar a ordem de visitação |
+| DFS | Explora em profundidade | Analisar a estrutura do grafo |
+| A* | Busca orientada ao destino | Encontrar caminho de menor custo |
+
+A comparação foi importante para perceber que não existe um único algoritmo que resolva todas as partes do problema da mesma maneira.
+
+---
+
+## 🔄 7. Fluxo da solução
+
+O funcionamento geral do projeto pode ser resumido da seguinte forma:
+
+```text
 Dados das localidades
         │
         ▼
@@ -227,11 +306,11 @@ Construção do grafo
         │
         ├───────────────┐
         ▼               ▼
-      BFS / DFS         A*
+    BFS / DFS           A*
         │               │
         └───────┬───────┘
                 ▼
-        Análise das rotas
+         Análise das rotas
                 │
                 ▼
           Coordenadas
@@ -243,58 +322,86 @@ Construção do grafo
         Zonas de entrega
                 │
                 ▼
-       Análise dos resultados
-📊 8. Resultados obtidos
+      Análise dos resultados
+```
+
+---
+
+## 📈 8. Resultados obtidos
 
 Depois de implementar os algoritmos, realizei a execução individual e também a execução integrada pelo programa principal.
 
-Os resultados principais foram:
+Os principais resultados foram:
 
-BFS
-Origem: Centro
+### BFS
 
+**Origem:** Centro
+
+```text
 Centro → Norte → Sul → Leste → Oeste
-DFS
-Origem: Centro
+```
 
+### DFS
+
+**Origem:** Centro
+
+```text
 Centro → Norte → Leste → Oeste → Sul
-A*
-Origem: Centro
-Destino: Oeste
+```
 
+### A*
+
+**Origem:** Centro  
+**Destino:** Oeste
+
+```text
 Centro → Oeste
 
 Custo total: 5
-K-Means
-Quantidade de zonas: 2
+```
 
+### K-Means
+
+**Quantidade de zonas:** 2
+
+```text
 Zona 1:
 Centro, Norte, Leste
 
 Zona 2:
 Sul, Oeste
-🧪 9. Testes automatizados
+```
 
-Além dos testes manuais, criei testes automatizados utilizando Pytest.
+Os resultados mostram que cada algoritmo contribuiu de uma forma diferente para o cenário.
+
+---
+
+## 🧪 9. Testes automatizados
+
+Além dos testes manuais, criei testes automatizados utilizando a biblioteca **Pytest**.
 
 Foram criados testes para os quatro principais algoritmos:
 
-tests/test_bfs.py
-tests/test_dfs.py
-tests/test_astar.py
-tests/test_kmeans.py
+- `tests/test_bfs.py`
+- `tests/test_dfs.py`
+- `tests/test_astar.py`
+- `tests/test_kmeans.py`
 
 O objetivo dos testes é verificar se os algoritmos estão retornando resultados compatíveis com o cenário utilizado no projeto.
 
-Execução dos testes
+### Execução dos testes
 
 Com o ambiente virtual ativado:
 
+```bash
 python -m pytest
-Resultado da validação
+```
+
+### Resultado da validação
 
 Os quatro testes foram executados com sucesso:
 
+```text
 ================ test session starts ================
 
 collected 4 items
@@ -305,29 +412,43 @@ tests/test_dfs.py .
 tests/test_kmeans.py .
 
 ================= 4 passed =================
-Resultado
-Teste	Resultado
-A*	✅ PASSOU
-BFS	✅ PASSOU
-DFS	✅ PASSOU
-K-Means	✅ PASSOU
+```
 
-O resultado 4 passed confirma que os quatro testes automatizados passaram na execução realizada.
+### Resultado
 
-🖥️ 10. Execução integrada
+| Teste | Resultado |
+|---|---|
+| A* | ✅ PASSOU |
+| BFS | ✅ PASSOU |
+| DFS | ✅ PASSOU |
+| K-Means | ✅ PASSOU |
+
+O resultado **4 passed** confirma que os quatro testes automatizados passaram na execução realizada.
+
+---
+
+## 🖥️ 10. Execução integrada
 
 Também foi criado um programa principal para reunir os resultados dos algoritmos em uma única execução.
 
-Comando
+### Comando
+
+```bash
 python -m src.main
-Resultado validado
+```
+
+### Resultado validado
+
+```text
 ==================================================
+
 SABOR EXPRESS
 Otimização Inteligente de Rotas
+
 ==================================================
 
 BFS - Busca em Largura
-----------------------
+
 Ponto de origem: Centro
 
 Ordem de visitação:
@@ -335,7 +456,7 @@ Ordem de visitação:
 
 
 DFS - Busca em Profundidade
----------------------------
+
 Ponto de origem: Centro
 
 Ordem de visitação:
@@ -343,7 +464,7 @@ Ordem de visitação:
 
 
 A* - Menor Caminho
-------------------
+
 Ponto de origem: Centro
 Destino: Oeste
 
@@ -355,7 +476,7 @@ Custo total:
 
 
 K-Means - Agrupamento de Entregas
----------------------------------
+
 Quantidade de zonas: 2
 
 Zona 1:
@@ -364,56 +485,23 @@ Zona 1:
 Zona 2:
 ['Sul', 'Oeste']
 
+
 ==================================================
+
 Execução finalizada com sucesso!
+
 ==================================================
+```
 
 Essa execução integrada facilitou a conferência dos resultados antes de finalizar o projeto.
 
-📈 11. Análise dos resultados
+---
 
-Depois de executar os algoritmos, algumas diferenças ficaram mais claras.
-
-O BFS e o DFS conseguiram percorrer o grafo, mas cada um apresentou uma ordem de visitação diferente.
-
-O BFS percorreu os pontos por níveis, enquanto o DFS seguiu um caminho em profundidade.
-
-O A* foi o algoritmo mais relacionado ao problema de rota, pois utiliza os pesos das conexões. No teste realizado entre Centro e Oeste, encontrou o caminho direto com custo 5.
-
-Já o K-Means teve outra função dentro do projeto. Em vez de procurar uma rota, ele foi utilizado para separar as localidades em grupos.
-
-Por isso, percebi durante o desenvolvimento que os algoritmos não estão fazendo exatamente a mesma coisa. Cada um resolve uma parte diferente do problema.
-
-⏱️ 12. Eficiência e complexidade
-
-Como o projeto possui somente cinco localidades e sete conexões, a execução ocorre rapidamente.
-
-Neste projeto, o objetivo principal não foi medir desempenho em grande escala, mas compreender o funcionamento dos algoritmos.
-
-De forma geral, as complexidades aproximadas são:
-
-Algoritmo	Complexidade aproximada	Característica
-BFS	O(V + E)	Exploração por níveis
-DFS	O(V + E)	Exploração em profundidade
-A*	Depende da heurística e do grafo	Busca direcionada
-K-Means	O(n × k × i × d)	Agrupamento iterativo
-
-Onde:
-
-V = número de vértices;
-E = número de arestas;
-n = número de pontos;
-k = número de grupos;
-i = número de iterações;
-d = número de dimensões dos dados.
-
-Como o cenário utilizado é pequeno, não seria adequado tirar conclusões sobre desempenho em uma cidade real somente a partir desses testes.
-
-💭 13. O que observei durante o desenvolvimento
+## 💭 11. O que observei durante o desenvolvimento
 
 Uma das principais dificuldades foi entender que os algoritmos de busca possuem objetivos diferentes.
 
-No início, a ideia de “buscar uma rota” poderia dar a impressão de que qualquer algoritmo de busca encontraria automaticamente a melhor rota. Durante a implementação, ficou mais claro que isso depende da estratégia utilizada e das características do grafo.
+No início, a ideia de "buscar uma rota" poderia dar a impressão de que qualquer algoritmo de busca encontraria automaticamente a melhor rota. Durante a implementação, ficou mais claro para mim que isso depende da estratégia utilizada e das características do grafo.
 
 Com o BFS, consegui observar a exploração por níveis.
 
@@ -425,75 +513,86 @@ No K-Means, a lógica foi diferente, pois o algoritmo não procura uma rota. Ele
 
 Essa diferença entre os algoritmos foi uma das partes mais importantes que consegui perceber durante a realização do projeto.
 
-⚠️ 14. Limitações
+---
+
+## ⏱️ 12. Eficiência e complexidade
+
+Como o projeto possui somente cinco localidades e sete conexões, a execução ocorre rapidamente.
+
+Neste projeto, o objetivo principal não foi medir desempenho em grande escala, mas compreender o funcionamento dos algoritmos.
+
+De forma geral, as complexidades aproximadas são:
+
+| Algoritmo | Complexidade aproximada | Característica |
+|---|---|---|
+| BFS | O(V + E) | Exploração por níveis |
+| DFS | O(V + E) | Exploração em profundidade |
+| A* | Depende da heurística e do grafo | Busca direcionada |
+| K-Means | O(n × k × i × d) | Agrupamento iterativo |
+
+Onde:
+
+- **V** = número de vértices;
+- **E** = número de arestas;
+- **n** = número de pontos;
+- **k** = número de grupos;
+- **i** = número de iterações;
+- **d** = número de dimensões dos dados.
+
+Como o cenário utilizado é pequeno, não seria adequado tirar conclusões sobre desempenho em uma cidade real somente a partir desses testes.
+
+---
+
+## ⚠️ 13. Limitações
 
 O projeto possui algumas limitações porque foi desenvolvido como uma simulação acadêmica.
 
 Entre elas:
 
-a cidade utilizada é fictícia;
-existem somente cinco localidades;
-as distâncias são estimadas;
-não existem dados de trânsito em tempo real;
-não são consideradas ruas de sentido único;
-não são considerados acidentes ou congestionamentos;
-não existe uma quantidade real de pedidos;
-não existe capacidade diferente entre os entregadores;
-o K-Means utiliza coordenadas simplificadas;
-não são considerados horários ou janelas de entrega.
+- a cidade utilizada é fictícia;
+- existem somente cinco localidades;
+- as distâncias são estimadas;
+- não existem dados de trânsito em tempo real;
+- não são consideradas ruas de sentido único;
+- não são considerados acidentes ou congestionamentos;
+- não existe uma quantidade real de pedidos;
+- não existe capacidade diferente entre os entregadores;
+- o K-Means utiliza coordenadas simplificadas;
+- não são considerados horários ou janelas de entrega.
 
 Por causa dessas limitações, os resultados não devem ser interpretados como uma solução pronta para uma operação real de delivery.
 
 O objetivo foi demonstrar os conceitos de Inteligência Artificial em um problema pequeno e controlado.
 
-🚀 15. Melhorias futuras
+---
 
-Se o projeto fosse evoluído para uma aplicação mais próxima de um cenário real, algumas melhorias poderiam ser feitas.
+## 🚀 14. Melhorias futuras
 
-Dados reais
-utilizar coordenadas reais;
-utilizar mapas reais;
-considerar distâncias reais;
-utilizar informações de trânsito.
-Rotas
-atualizar as rotas de acordo com o trânsito;
-considerar ruas de sentido único;
-considerar congestionamentos;
-trabalhar com vários destinos na mesma rota;
-considerar horários de entrega.
-Entregadores
-cadastrar vários entregadores;
-definir capacidade por entregador;
-distribuir os pedidos automaticamente;
-considerar a localização atual de cada entregador.
-Inteligência Artificial
-testar diferentes heurísticas no A*;
-comparar outros algoritmos de otimização;
-testar diferentes quantidades de clusters no K-Means;
-utilizar conjuntos de dados maiores.
-Interface
-criar uma interface gráfica;
-apresentar o mapa de forma interativa;
-permitir selecionar origem e destino;
-apresentar as zonas de entrega visualmente.
-🖼️ 16. Visualizações
+Como evolução do projeto, poderiam ser implementadas algumas melhorias:
 
-O projeto possui imagens utilizadas para facilitar a compreensão dos resultados.
+- integração com APIs de mapas;
+- utilização de dados reais de trânsito;
+- atualização dinâmica das rotas;
+- inclusão de ruas de sentido único;
+- consideração de congestionamentos;
+- inclusão de múltiplos entregadores;
+- definição de capacidade máxima por entregador;
+- otimização de múltiplas entregas em uma mesma rota;
+- comparação de diferentes heurísticas para o A*;
+- utilização de dados reais de localização;
+- inclusão de horários e janelas de entrega;
+- desenvolvimento de uma interface gráfica;
+- utilização de outros algoritmos de otimização.
 
-Grafo da cidade
+Essas melhorias permitiriam aproximar o projeto de um cenário mais próximo de uma operação real.
 
-A primeira imagem representa as localidades e suas conexões.
+---
 
-Rota encontrada pelo A*
+## 📁 15. Estrutura do projeto
 
-A segunda imagem apresenta a rota encontrada pelo A* entre Centro e Oeste.
+O projeto foi organizado em diretórios para facilitar a manutenção e a evolução do código.
 
-As visualizações foram utilizadas como apoio à análise do resultado e também fazem parte da documentação do projeto.
-
-📁 17. Estrutura do projeto
-
-A estrutura foi organizada para separar os algoritmos, a modelagem, os dados, os testes e as visualizações.
-
+```text
 Artificial-Intelligence-Fundamentals/
 │
 ├── data/
@@ -538,82 +637,225 @@ Artificial-Intelligence-Fundamentals/
 ├── .gitignore
 ├── README.md
 └── requirements.txt
-🛠️ 18. Tecnologias utilizadas
-Python 3.13 — linguagem utilizada no desenvolvimento;
-NetworkX — criação e manipulação do grafo;
-NumPy — operações matemáticas;
-Pandas — leitura e organização dos dados;
-Scikit-Learn — utilização do K-Means;
-Matplotlib — geração das visualizações;
-Pytest — testes automatizados;
-Git — controle de versão;
-GitHub — armazenamento do projeto;
-Visual Studio Code — ambiente utilizado para desenvolvimento.
-📦 19. Como executar o projeto
-19.1 Clonar o repositório
+```
+
+---
+
+## 📂 16. Organização dos diretórios
+
+### `src/`
+
+Contém o código-fonte do projeto.
+
+### `src/algorithms/`
+
+Contém os algoritmos utilizados:
+
+- `bfs.py` — Busca em Largura;
+- `dfs.py` — Busca em Profundidade;
+- `astar.py` — algoritmo A*;
+- `kmeans.py` — agrupamento das localidades.
+
+Cada algoritmo foi separado em um módulo independente.
+
+### `src/models/`
+
+Contém a modelagem do cenário.
+
+O arquivo `city_graph.py` é responsável pela criação do grafo da cidade, incluindo as localidades, conexões e pesos.
+
+### `src/visualization/`
+
+Contém os módulos responsáveis pelas representações visuais do grafo e das rotas.
+
+Entre eles:
+
+- `graph_visualization.py`;
+- `route_visualization.py`.
+
+### `data/`
+
+Contém os dados utilizados no projeto.
+
+Atualmente é utilizado o arquivo `pontos_entrega.csv`, que contém as coordenadas fictícias das localidades.
+
+### `docs/`
+
+Contém a documentação complementar do projeto.
+
+O arquivo `resultados.md` pode ser utilizado para registrar análises e resultados dos experimentos.
+
+### `images/`
+
+Armazena as imagens utilizadas para documentar visualmente os resultados.
+
+### `notebooks/`
+
+Diretório destinado a experimentos e análises exploratórias utilizando Jupyter Notebook.
+
+### `tests/`
+
+Diretório destinado aos testes automatizados dos componentes do projeto.
+
+---
+
+## 🛠️ 17. Tecnologias utilizadas
+
+- **Python 3.13** — linguagem utilizada no desenvolvimento;
+- **NetworkX** — criação e manipulação do grafo;
+- **NumPy** — operações matemáticas;
+- **Pandas** — leitura e organização dos dados;
+- **Scikit-Learn** — utilização do K-Means;
+- **Matplotlib** — geração das visualizações;
+- **Pytest** — testes automatizados;
+- **Git** — controle de versão;
+- **GitHub** — armazenamento do projeto;
+- **Visual Studio Code** — ambiente utilizado para desenvolvimento.
+
+---
+
+## 📦 18. Como executar o projeto
+
+### 18.1 Clonar o repositório
+
+```bash
 git clone https://github.com/soniaavila/Artificial-Intelligence-Fundamentals.git
+```
 
 Depois entre na pasta:
 
+```bash
 cd Artificial-Intelligence-Fundamentals
-19.2 Criar o ambiente virtual
+```
+
+### 18.2 Criar o ambiente virtual
 
 No Windows:
 
+```bash
 python -m venv .venv
-19.3 Ativar o ambiente virtual
+```
+
+### 18.3 Ativar o ambiente virtual
 
 No PowerShell:
 
+```powershell
 .venv\Scripts\Activate.ps1
-19.4 Instalar as dependências
+```
+
+### 18.4 Instalar as dependências
+
+```bash
 pip install -r requirements.txt
-▶️ 20. Executando os algoritmos
+```
 
-Os módulos podem ser executados individualmente.
+---
 
-Grafo
+## ▶️ 19. Executando os algoritmos
+
+Os módulos podem ser executados individualmente a partir da pasta raiz do projeto.
+
+### Grafo
+
+```bash
 python -m src.models.city_graph
-BFS
+```
+
+### BFS
+
+```bash
 python -m src.algorithms.bfs
-DFS
+```
+
+### DFS
+
+```bash
 python -m src.algorithms.dfs
-A*
+```
+
+### A*
+
+```bash
 python -m src.algorithms.astar
-K-Means
+```
+
+### K-Means
+
+```bash
 python -m src.algorithms.kmeans
-Programa principal
+```
+
+### Programa principal
 
 Para executar todos os algoritmos em uma única execução:
 
+```bash
 python -m src.main
-🧪 21. Executando os testes
+```
+
+---
+
+## 🧪 20. Executando os testes
 
 Com o ambiente virtual ativado:
 
+```bash
 python -m pytest
+```
 
-Resultado esperado:
+Resultado validado durante o desenvolvimento:
 
+```text
 4 passed
+```
 
-Os testes realizados no projeto foram:
+Os quatro testes realizados foram:
 
-A*       ✅ PASSOU
-BFS      ✅ PASSOU
-DFS      ✅ PASSOU
-K-Means  ✅ PASSOU
-📚 22. Referências
-Material da disciplina Fundamentos da Inteligência Artificial – UniFECAF.
-RUSSELL, Stuart; NORVIG, Peter. Artificial Intelligence: A Modern Approach.
-Documentação oficial do Python.
-Documentação oficial do NetworkX.
-Documentação oficial do Scikit-Learn.
-Documentação oficial do NumPy.
-Documentação oficial do Pandas.
-Documentação oficial do Matplotlib.
-Documentação oficial do Pytest.
-🎓 23. Conclusão
+| Algoritmo | Resultado |
+|---|---|
+| A* | ✅ PASSOU |
+| BFS | ✅ PASSOU |
+| DFS | ✅ PASSOU |
+| K-Means | ✅ PASSOU |
+
+---
+
+## 🖼️ 21. Visualizações
+
+O projeto possui visualizações para facilitar a interpretação dos resultados.
+
+### Grafo da cidade
+
+![Grafo da Cidade](images/grafo_cidade.png)
+
+A imagem apresenta a representação gráfica das localidades e das conexões utilizadas no cenário.
+
+### Rota encontrada pelo A*
+
+![Rota A* Centro Oeste](images/rota_astar_centro_oeste.png)
+
+A imagem apresenta graficamente a rota utilizada no teste entre Centro e Oeste.
+
+A visualização foi importante para conferir de forma mais clara o resultado encontrado pelo algoritmo.
+
+---
+
+## 📊 22. Análise final
+
+A implementação permitiu observar, na prática, como diferentes técnicas podem ser utilizadas em partes diferentes de um mesmo problema.
+
+O BFS e o DFS foram importantes para entender as estratégias de exploração do grafo.
+
+O A* apresentou uma aplicação mais direta ao problema de rota, pois considera os custos das conexões durante a busca.
+
+O K-Means teve uma função diferente. Em vez de encontrar caminhos, foi utilizado para separar as localidades em grupos.
+
+Os testes automatizados também ajudaram a verificar se os quatro módulos principais estavam retornando os resultados esperados para o cenário criado.
+
+---
+
+## 🎓 23. Conclusão
 
 O desenvolvimento deste projeto permitiu colocar em prática alguns dos conceitos estudados na disciplina de Fundamentos da Inteligência Artificial.
 
@@ -631,12 +873,26 @@ Apesar de ser uma simulação pequena e utilizar dados fictícios, o projeto aju
 
 Uma evolução natural seria utilizar dados reais, mapas, trânsito e vários pedidos e entregadores. Isso permitiria transformar o exemplo acadêmico em uma solução mais próxima de um problema real de otimização logística.
 
-👩‍💻 24. Autoria
+---
 
-Sonia Ávila de Oliveira
+## 📚 24. Referências
+
+- Material da disciplina **Fundamentos da Inteligência Artificial – UniFECAF**.
+- RUSSELL, Stuart; NORVIG, Peter. *Artificial Intelligence: A Modern Approach*.
+- Documentação oficial do Python.
+- Documentação oficial do NetworkX.
+- Documentação oficial do Scikit-Learn.
+- Documentação oficial do NumPy.
+- Documentação oficial do Pandas.
+- Documentação oficial do Matplotlib.
+- Documentação oficial do Pytest.
+
+---
+
+## 👩‍💻 Autoria
+
+**Sonia Ávila de Oliveira**
 
 Gestão da Tecnologia da Informação – UniFECAF
 
-Projeto acadêmico desenvolvido para a disciplina:
-
-Fundamentos da Inteligência Artificial
+Projeto acadêmico desenvolvido para a disciplina **Fundamentos da Inteligência Artificial**.
